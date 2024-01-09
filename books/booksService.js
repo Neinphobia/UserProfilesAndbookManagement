@@ -1,12 +1,8 @@
 const bookModel = require("../models/bookModel");
 
 const getBooks = async () => {
-  try {
-    const result = await bookModel.find();
-    return result;
-  } catch (error) {
-    throw new Error("err: Cant get the books...");
-  }
+  const result = await bookModel.find();
+  return result;
 };
 const createBook = async (title, author, genre) => {
   //will implement error handling
@@ -15,7 +11,7 @@ const createBook = async (title, author, genre) => {
     author,
     genre,
   });
-  const result = await createBook.save();
+  const result = await createdBook.save();
   return result;
 };
 

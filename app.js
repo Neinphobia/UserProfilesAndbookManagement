@@ -3,6 +3,12 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
+
+const usersRouter = require("./users/usersRouter");
+const booksRouter = require("./books/booksRouter");
+const { connectDatabase } = require("./database/database");
+const errorHandler = require("./errorHandler");
+
 dotenv.config();
 /*
 A. Users can create book entries by submitting the book name.
@@ -21,10 +27,7 @@ app.use(express.json());
 app.use(cors());
 
 const main = async () => {
-  const booksRouter = require("./books/booksRouter");
-  const { connectDatabase } = require("./database/database");
-  const errorHandler = require("./errorHandler").default;
-
+  app.use("/users", usersRouter);
   app.use("/books", booksRouter);
   await connectDatabase();
 

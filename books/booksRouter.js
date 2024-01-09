@@ -7,8 +7,8 @@ const booksRouter = express.Router();
 
 //nicer in nestJs but for this task i dont have much time to fully acknowledge typescript and nestJs
 
-booksRouter.get("/", getBooks); //Book listing
-booksRouter.post("/create", createBook); //book create
+booksRouter.get("/", errorRouter(getBooks)); //Book listing
+booksRouter.post("/create", errorRouter(createBook)); //book create
 //favoriting book
 
 booksRouter.use(errorHandler); //not sure if i wanna use this middleware here

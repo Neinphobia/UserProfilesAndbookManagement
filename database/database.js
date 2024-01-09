@@ -1,7 +1,11 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
+//● Explain your database schema design in the comments.
+/*
 
+
+*/
 const connectDatabase = async () => {
   try {
     const { MONGODB_URI, MONGODB_OPTIONS } = process.env;
