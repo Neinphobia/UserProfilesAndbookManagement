@@ -4,6 +4,15 @@ const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const cors = require("cors");
 dotenv.config();
+/*
+A. Users can create book entries by submitting the book name.
+B. All users can view a list of all books, displaying both the book name and the
+creator's username.
+C. Implement functionality for users to 'favorite' books created by other users.
+D. Users cannot favorite their own books or the same book more than once.
+E. Users can view a list of their favorite books, showing the book name and
+creator's username.
+*/
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +27,8 @@ const main = async () => {
 
   app.use("/books", booksRouter);
   await connectDatabase();
+
+  app.use(errorHandler);
 };
 
 main();
