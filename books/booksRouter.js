@@ -3,7 +3,7 @@ const express = require("express");
 const { getBooks, createBook } = require("./booksController");
 const errorRouter = require("../utils/errorRouter");
 const errorHandler = require("../errorHandler");
-const { updateBook } = require("./booksService");
+const { updateBook, getFavoritedBooks } = require("./booksService");
 const booksRouter = express.Router();
 
 //nicer in nestJs but for this task i dont have much time to fully acknowledge typescript and nestJs
@@ -11,8 +11,8 @@ const booksRouter = express.Router();
 booksRouter.get("/", errorRouter(getBooks)); //Book listing
 booksRouter.post("/create", errorRouter(createBook)); //book create
 
-booksRouter.put("edit",errorRouter(updateBook));
-
+booksRouter.put("/edit",errorRouter(updateBook));
+booksRouter.get("/fav",errorRouter(getFavoritedBooks));
 
 //favoriting book
 

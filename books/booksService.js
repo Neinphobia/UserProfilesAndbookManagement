@@ -27,6 +27,7 @@ const updateBook = async (id, favoritedBy, userId) => {
     throw new Error("User not found!");
   }
 
+  //check the creedit for favoriting
   if (user.favCreditLeft <= 0) {
     throw new Error("Not enough credits left!");
   }
@@ -62,9 +63,16 @@ const updateBook = async (id, favoritedBy, userId) => {
   return { updatedBook, updatedUser };
 };
 
+const getFavoritedBooks = async () => {
+  const result = await bookModel.find({ favoritedBy: { $exists: true, $ne: [] } });
+  return result;
+};
+
+
 
 module.exports = {
   getBooks,
   createBook,
   updateBook,
+  getFavoritedBooks,
 };

@@ -27,7 +27,13 @@ const updateBook = async (req, res) => {
   }
 };
 
+const getFavoritedBooks = async (req, res) => {
+  const result = await booksService.getFavoritedBooks();
+  return res.json(result);
+};
 module.exports = {
   getBooks,
   createBook,
+  updateBook,
+  getFavoritedBooks
 };
