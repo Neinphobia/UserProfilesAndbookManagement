@@ -3,14 +3,22 @@ const express = require("express");
 const { getBooks, createBook } = require("./booksController");
 const errorRouter = require("../utils/errorRouter");
 const errorHandler = require("../errorHandler");
+const { updateBook } = require("./booksService");
 const booksRouter = express.Router();
 
 //nicer in nestJs but for this task i dont have much time to fully acknowledge typescript and nestJs
 
 booksRouter.get("/", errorRouter(getBooks)); //Book listing
 booksRouter.post("/create", errorRouter(createBook)); //book create
+
+booksRouter.put("edit",errorRouter(updateBook));
+
+
 //favoriting book
 
+
+
+//add favorited by ...user
 booksRouter.use(errorHandler); //not sure if i wanna use this middleware here
 
 // ● Usernames are immutable (cannot be changed post-registration). Means that i wil not implement put request
