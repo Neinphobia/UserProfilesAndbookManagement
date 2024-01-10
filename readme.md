@@ -1,5 +1,23 @@
 # Endpoints
 
+## Vercel link for testing
+
+```
+https://user-profiles-andbook-management.vercel.app/books
+```
+
+```
+https://user-profiles-andbook-management.vercel.app/users
+```
+
+```
+https://user-profiles-andbook-management.vercel.app/auth/register
+```
+
+```
+https://user-profiles-andbook-management.vercel.app/auth/login
+```
+
 ## GET /books/
 
 ### Description
