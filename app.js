@@ -12,6 +12,7 @@ const errorHandler = require("./errorHandler");
 const authRoutes = require("./auth/auth");
 dotenv.config();
 /*
+1s
 A. Users can create book entries by submitting the book name.
 B. All users can view a list of all books, displaying both the book name and the
 creator's username.

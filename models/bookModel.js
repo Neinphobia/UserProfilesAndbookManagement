@@ -6,6 +6,7 @@ const bookSchema = new mongoose.Schema({
   author: { type: String, required: true },
   genre: { type: String },
   createdBy: { type: String }, //
+  favoritedBy:{ type:String },
   // Other book-related fields
 });
 const bookModel = mongoose.model("Book", bookSchema);
