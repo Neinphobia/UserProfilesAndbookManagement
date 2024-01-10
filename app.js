@@ -80,6 +80,8 @@ const main = async () => {
 };
 
 main();
+//docker-compose up --build
+//havent used this command
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

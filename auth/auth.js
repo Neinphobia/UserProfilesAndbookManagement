@@ -18,8 +18,20 @@ router.post(
       return res.status(400).json({ error: "Username already exists" });
     }
 
-    // Check if the email already exists
-    const existingEmail = await User.findOne({ email });
+    
+    /*
+    Check the mail is valid: 
+    const validator = require('validator');
+    
+    if (validator.isEmail(email)) {
+      // email is valid
+    } else {
+      // email is not valid
+    } 
+    
+    */
+   // Check if the email already exists
+   const existingEmail = await User.findOne({ email });
     if (existingEmail) {
       return res.status(400).json({ error: "Email already exists" });
     }
