@@ -16,71 +16,71 @@ const createBook = async (title, author, genre, createdBy) => {
   const result = await createdBook.save();
   return result;
 };
-const updateBook = async (id, favoritedBy, userId) => {
-  const book = await bookModel.findById(id);
-  if (!book) {
-    throw new Error("Book not found!");
-  }
-
-  const user = await userModel.findById(userId);
-  if (!user) {
-    throw new Error("User not found!");
-  }
-
-  //check the creedit for favoriting
-  if (user.favCreditLeft <= 0) {
-    throw new Error("Not enough credits left!");
-  }
-
-  if (book.favoritedBy.includes(userId)) {
-    throw new Error("Book already favorited by user!");
-  }
-
-  const updatedBook = await bookModel.findByIdAndUpdate(
-    id,
-    {
-      favoritedBy: favoritedBy,
-    },
-    {
-      new: true,
+  const updateBook = async (id, favoritedBy, userId) => {
+    const book = await bookModel.findById(id);
+    if (!book) {
+      throw new Error("Book not found!");
     }
-  );
 
-  if (!updatedBook) {
-    throw new Error("Update failed!");
-  }
-
-  const updatedUser = await userModel.findByIdAndUpdate(
-    userId,
-    {
-      favCreditLeft: user.favCreditLeft - 1,
-    },
-    {
-      new: true,
+    const user = await userModel.findById(userId);
+    if (!user) {
+      throw new Error("User not found!");
     }
-  );
 
-  if (!updatedUser) {
-    throw new Error("Update failed!");
-  }
-/// can add more if needeed
+    //check the creedit for favoriting
+    if (user.favCreditLeft <= 0) {
+      throw new Error("Not enough credits left!");
+    }
 
-  const favoriteBook = new favBookModel({
-    bookId: id,
-    userId: userId,
-  });
+    if (book.favoritedBy.includes(userId)) {
+      throw new Error("Book already favorited by user!");
+    }
 
-  const favResult = await favoriteBook.save();
-  
+    const updatedBook = await bookModel.findByIdAndUpdate(
+      id,
+      {
+        favoritedBy: favoritedBy,
+      },
+      {
+        new: true,
+      }
+    );
 
-  return { updatedBook, updatedUser ,favResult };
-};
+    if (!updatedBook) {
+      throw new Error("Update failed!");
+    }
 
-const getFavoritedBooks = async () => {
-  
-  const result = await favBookModel.find();
-  return result; 
-};
+    const updatedUser = await userModel.findByIdAndUpdate(
+      userId,
+      {
+        favCreditLeft: user.favCreditLeft - 1,
+      },
+      {
+        new: true,
+      }
+    );
+
+    if (!updatedUser) {
+      throw new Error("Update failed!");
+    }
+  /// can add more if needeed
+
+    const favoriteBook = new favBookModel({
+      bookId: id,
+      userId: userId,
+    });
+
+    const favResult = await favoriteBook.save();
+    
+
+    return { updatedBook, updatedUser ,favResult };
+  };
+
+  const getFavoritedBooks = async () => {
+    //book id and userid
+    const result = await favBookModel.find();
+    return result; 
+  };
 
 
 
