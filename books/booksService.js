@@ -1,5 +1,5 @@
 const bookModel = require("../models/bookModel");
-const usermodel = require('../models/userModel');
+const userModel = require('../models/userModel');
 
 const getBooks = async () => {
   const result = await bookModel.find();
