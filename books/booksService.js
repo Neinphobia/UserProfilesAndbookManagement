@@ -1,6 +1,6 @@
 const bookModel = require("../models/bookModel");
 const userModel = require('../models/userModel');
-
+const favBookModel = require('../models/favBookmodel');
 const getBooks = async () => {
   const result = await bookModel.find();
   return result;
@@ -63,13 +63,23 @@ const updateBook = async (id, favoritedBy, userId) => {
   if (!updatedUser) {
     throw new Error("Update failed!");
   }
+/// can add more if needeed
 
-  return { updatedBook, updatedUser };
+  const favoriteBook = new favBookModel({
+    bookId: id,
+    userId: userId,
+  });
+
+  const favResult = await favoriteBook.save();
+  
+
+  return { updatedBook, updatedUser ,favResult };
 };
 
 const getFavoritedBooks = async () => {
-  const result = await bookModel.find({ favoritedBy: { $exists: true, $ne: [] } });
-  return result;
+  
+  const result = await favBookModel.find();
+  return result; 
 };
 
 
