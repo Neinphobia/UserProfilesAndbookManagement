@@ -4,12 +4,13 @@ const getBooks = async () => {
   const result = await bookModel.find();
   return result;
 };
-const createBook = async (title, author, genre) => {
+const createBook = async (title, author, genre, createdBy) => {
   //will implement error handling
   const createdBook = new bookModel({
     title,
     author,
     genre,
+    createdBy,
   });
   const result = await createdBook.save();
   return result;

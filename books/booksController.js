@@ -5,9 +5,9 @@ const getBooks = async (req, res) => {
   return res.json(result);
 };
 const createBook = async (req, res) => {
-  const { title, author, genre } = req.body;
+  const { title, author, genre, createdBy } = req.body;
 
-  const result = await booksService.createBook(title, author, genre);
+  const result = await booksService.createBook(title, author, genre, createdBy);
   return res.json(result);
 };
 
