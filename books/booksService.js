@@ -32,6 +32,10 @@ const updateBook = async (id, favoritedBy, userId) => {
     throw new Error("Not enough credits left!");
   }
 
+  if (book.favoritedBy.includes(userId)) {
+    throw new Error("Book already favorited by user!");
+  }
+
   const updatedBook = await bookModel.findByIdAndUpdate(
     id,
     {
